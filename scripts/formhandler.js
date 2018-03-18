@@ -64,7 +64,7 @@
        .then(function() {
          this.reset();
          this.elements[0].focus();
-       }.bind(this));
+       }.bind(this)); //Similar thing here. You can use the var self = this; trick from truck.js
     });
   }
 

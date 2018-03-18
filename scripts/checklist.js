@@ -47,7 +47,7 @@
 
     var $label = $('<label></label>');
 
-    var $checkbox = $('<input></input>', {
+    var $checkbox = $('<input></input>', { // <input/> is self closing so you don't need the </input>
       type: 'checkbox',
       value: order.emailAddress
     });
