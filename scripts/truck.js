@@ -18,18 +18,24 @@
   }
 
   Truck.prototype.printOrders = function (printFn) {
+    /*
+     .bind is generally considered to be less performant for these types of situations
+     Here is a nice trick. I've read that it's 60% faster than doing a bind (though I haven't confirmed that anywhere).
+     Not to say that bind can't be used...but in this case, self works better.
+    */
+    var self = this;
     return this.db.getAll()
      .then(function (orders) {
        var customerIdArray = Object.keys(orders);
 
-       console.log('Truck #' + this.truckId + ' has pending orders:');
+       console.log('Truck #' + self.truckId + ' has pending orders:');
        customerIdArray.forEach(function (id) {
          console.log(orders[id]);
          if (printFn) {
            printFn(orders[id]);
          }
-       }.bind(this));
-     }.bind(this));
+       });
+     });
   }
 
   App.Truck = Truck;
