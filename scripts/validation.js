@@ -1,13 +1,13 @@
 (function (window) {
-  'use strict';
+	'use strict';
 
-  var App = window.App || {};
-  var Validation = {
-    isGmailAddress: function(email) {
-      return /.+@gmail\.com$/.test(email);
-    }
-  };
+	var App = window.App || {};
+	var Validation = {
+		isGmailAddress: function(email) {
+			return /.+@gmail\.com$/.test(email);
+		}
+	};
 
-  App.Validation = Validation;
-  window.App = App;
+	App.Validation = Validation;
+	window.App = App;
 })(window);

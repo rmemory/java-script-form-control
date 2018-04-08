@@ -1,37 +1,60 @@
+// Very basic database functionality
 (function (window) {
-  'use strict';
+	'use strict';
 
-  var App = window.App || {};
-  var Promise = window.Promise;
+	// See if App exists, if not create a new one
+	var App = window.App || {};
 
-  function DataStore() {
-    this.data = {};
-  }
+	var Promise = window.Promise;
 
-  function promiseResolvedWith(value) {
-    var promise = new Promise(function (resolve, reject) {
-      resolve(value);
-    });
-    return promise;
-  }
+	// Constructor
+	// Create with new. For example,
+	// var myData = new App.DataStore();
+	function DataStore() {
+		this.data = {};
+	}
 
-  DataStore.prototype.add = function (key, val) {
-    return promiseResolvedWith(null);
-  }
+	// Private
+	function promiseResolvedWith(value) {
+		var promise = new Promise(function (resolve, reject) {
+			resolve(value);
+		});
+		return promise;
+	}
 
-  DataStore.prototype.get = function (key) {
-    return promiseResolvedWith(this.data[key]);
-  }
+	/* 
+	 * API
+	 */
 
-  DataStore.prototype.getAll = function () {
-    return promiseResolvedWith(this.data);
-  }
+	// add a value, uniquely identified in the data with key
+	// public
+	DataStore.prototype.add = function (key, val) {
+		//this.data[key] = val;
+		return promiseResolvedWith(null);
+	}
 
-  DataStore.prototype.remove = function (key) {
-    delete this.data[key];
-    return promiseResolvedWith(null);
-  }
+	// get a value, uniquely identified in the data with key
+	// public
+	DataStore.prototype.get = function (key) {
+		// return this.data[key];
+		return promiseResolvedWith(this.data[key]);
+	}
 
-  App.DataStore = DataStore;
-  window.App = App;
+	// get all values
+	// public
+	DataStore.prototype.getAll = function () {
+		// return this.data;
+		return promiseResolvedWith(this.data);
+	}
+
+	// remove a value, uniquely identified in the data with key
+	// public
+	DataStore.prototype.remove = function (key) {
+		delete this.data[key];
+		return promiseResolvedWith(null);
+	}
+
+	// Make the DataStore object (with prototypes) available globally
+	App.DataStore = DataStore;
+	window.App = App;
 })(window);
