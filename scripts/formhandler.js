@@ -108,16 +108,22 @@
 		});
 	}
 
+	/*
+	 * addInputHandler will fire when the attached input element receives any 
+	 * input, typing, etc on the emailAddress fieldS.
+	 */ 
 	FormHandler.prototype.addInputHandler = function (fn) {
 		this.$formElement.on('input', '[name="emailAddress"]', function(event) {
 			var emailAddress = event.target.value;
 			var message = '';
 
 			if (fn(emailAddress)) {
-				event.target.setCustomValidity('');
+				// email address is valid
+				$(event.target).setCustomValidity('');
 			} else {
+				// email address is invalid
 				message = emailAddress + ' is not an authorized email address';
-				event.target.setCustomValidity(message);
+				$(event.target).setCustomValidity(message);
 			}
 		});
 	}

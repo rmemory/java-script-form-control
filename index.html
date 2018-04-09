@@ -5,7 +5,8 @@
 		<title>Java Script Form Control</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<style>
-			form :invalid {
+			/* Change the border-color if the validation fails */
+			form :focus:required:invalid {
 				border-color: #a94442;
 			}
 		</style>
@@ -80,6 +81,8 @@
 			</div>
 		</section>
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js" integrity="sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw=" crossorigin="anonymous"></script>
+		<!-- webshims downloaded from here: https://github.com/aFarkas/webshim/releases/lastest -->
+		<script src="webshim-1.16.0/js-webshim/minified/polyfiller.js" charset="utf-8"></script>
 		<script src="scripts/validation.js" charset="utf-8"></script>
 		<script src="scripts/checklist.js" charset="utf-8"></script>
 		<script src="scripts/formhandler.js" charset="utf-8"></script>

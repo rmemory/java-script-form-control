@@ -14,6 +14,7 @@
 		var FormHandler = App.FormHandler;
 		var Validation = App.Validation;
 		var CheckList = App.CheckList;
+		var webshim = window.webshim;
 
 		// var remoteDs = new RemoteDataStore(SERVER_URL);
 		// var myTruck = new Truck('ncc-1701', remoteDs);
@@ -38,7 +39,11 @@
 			});
 		});
 
+		// At the moment the addInputHandler is only tied to email address validation. This is just an example.
 		formHandler.addInputHandler(Validation.isGmailAddress);
+		
+		webshim.polyfill('forms forms-ext');
+		webshim.setOptions('forms', { addValidators: true, lazyCustomMessages: true });
 
 		// myTruck.printOrders(checkList.addRow.bind(checkList));
 })(window);
