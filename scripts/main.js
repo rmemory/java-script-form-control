@@ -31,11 +31,16 @@
 		// Intercept the post request
 		var formHandler = new FormHandler(FORM_SELECTOR);
 		// formHandler.addSubmitHandler(myTruck.createOrder); // by itself, it wont add a checklist row when order is created
-		// Here is how we both create the order and also add a checkList row
+		// Here is how we both create the order and also add a checkList row.
+		// Note that 'data' is filled in, internally, by the addSubmitHandler code.
 		formHandler.addSubmitHandler(function (data) {
 			return myTruck.createOrder.call(myTruck, data) //call is a good way to bind a different this, but its not needed here because myTruck will already be 'this'
-			 .then(function() {
+			 .then(function() { //usage of then means the function will only be called if the createOrder is happy
 				checkList.addRow.call(checkList, data); // Yet again, call is not needed because checkList will already be 'this'
+			},
+			// promise failure
+			function() {
+				alert("Server unreachable, Try again later");
 			});
 		});
 
@@ -45,5 +50,5 @@
 		webshim.polyfill('forms forms-ext');
 		webshim.setOptions('forms', { addValidators: true, lazyCustomMessages: true });
 
-		// myTruck.printOrders(checkList.addRow.bind(checkList));
+		myTruck.printOrders(checkList.addRow.bind(checkList));
 })(window);

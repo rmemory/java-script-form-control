@@ -3,6 +3,9 @@
 
 	var App = window.App || {};
 	var $ = window.jQuery;
+	
+	// Note that all jQuery methods used here return a deferred object, similar to promises, 
+	// and these are returned, so calling code can use them.
 
 	function RemoteDataStore(url) {
 		if (!url) {
@@ -19,8 +22,11 @@
 
 	RemoteDataStore.prototype.getAll = function (cb) {
 		return $.get(this.serverUrl, function (serverResponse) {
+			// Because a deferred is returned, using a callback isn't mandatory, hence its optional.
+			// But the callback is used in Truck.prototype.printOrders
 			if (cb) {
 				console.log(serverResponse);
+				// All responses passed to callback, cb
 				cb(serverResponse);
 			}
 		});
@@ -28,6 +34,7 @@
 
 	RemoteDataStore.prototype.get = function (key, cb) {
 		return $.get(this.serverUrl + '/' + key, function (serverResponse) {
+			// Because a deferred is returned, using a callback isn't mandatory, hence its optional.
 			if (cb) {
 				console.log(serverResponse);
 				cb(serverResponse);

@@ -14,6 +14,9 @@
 	 * API
 	 */
 
+	// All of the return statements in this file are to return the deferreds which are
+	// returned from jQuery or promises from the regular datastore.js
+
 	// createOrder. 
 	// The object parameter can be anything, but it is expected to 
 	// have an emailAddress property which serves as the ID for the
@@ -45,16 +48,19 @@
 		var self = this;
 		
 		return this.db.getAll()
+		// orders comes from the db return value
 		 .then(function (orders) {
 			 var customerIdArray = Object.keys(orders);
 
-			 console.log('Truck #' + self.truckId + ' has pending orders:');
-			 customerIdArray.forEach(function (id) {
-				 console.log(orders[id]);
-				 if (printFn) {
-					 printFn(orders[id]);
-				 }
-			 });//.bind(this));
+			 if (customerIdArray.length > 0) {
+				console.log('Truck #' + self.truckId + ' has pending orders:');
+				customerIdArray.forEach(function (id) {
+					console.log(orders[id]);
+					if (printFn) {
+						printFn(orders[id]);
+					}
+				});//.bind(this));
+			 }
 		 });//.bind(this));
 	}
 

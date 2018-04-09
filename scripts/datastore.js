@@ -4,7 +4,7 @@
 
 	// See if App exists, if not create a new one
 	var App = window.App || {};
-
+  // import the Promise object
 	var Promise = window.Promise;
 
 	// Constructor
@@ -18,6 +18,7 @@
 	function promiseResolvedWith(value) {
 		var promise = new Promise(function (resolve, reject) {
 			resolve(value);
+			// we aren't even bothering with the reject function.
 		});
 		return promise;
 	}
@@ -30,6 +31,7 @@
 	// public
 	DataStore.prototype.add = function (key, val) {
 		//this.data[key] = val;
+		// null means the add function typically doesn't return any value anyway.
 		return promiseResolvedWith(null);
 	}
 

@@ -104,7 +104,7 @@
 				 this.reset();
 				 // Return focus back to the first element after form submission
 				 this.elements[0].focus();
-			 }.bind(this));
+			 }.bind(this)); // might should use "self" here instead
 		});
 	}
 
